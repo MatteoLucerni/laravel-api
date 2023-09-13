@@ -29,9 +29,9 @@ class ProjectContoller extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $slug)
     {
-        $project = Project::with('type', 'technologies')->find($id);
+        $project = Project::where('slug', $slug)->with('type', 'technologies')->first();
 
         if (!$project) return response(null, 404);
 
